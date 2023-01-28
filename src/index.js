@@ -3,13 +3,17 @@ import { fetchCountries } from './fetchCountries';
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
 
-Notiflix.Notify.init({position: 'right-top'});
+Notiflix.Notify.init({position: 'center-top'});
 
 const DEBOUNCE_DELAY = 300;
 
 const inputSearch = document.querySelector('input#search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
+
+if (!inputSearch || !countryList || !countryInfo) {
+  throw new Error('Error: invalid markup!');
+}
 
 inputSearch.addEventListener('input', debounce(onInputSearch, DEBOUNCE_DELAY));
 
